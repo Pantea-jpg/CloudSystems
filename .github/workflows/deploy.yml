@@ -22,7 +22,7 @@ jobs:
             cd ~/CloudSystems
             git fetch origin
             git reset --hard origin/main
-
+git 
             cd my-app
             sudo docker build --no-cache -t my-app .
 
