@@ -19,9 +19,13 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.KEY }}
           script: |
-            cd ~/CloudSystems/my-app
-            git pull origin main
-            sudo docker stop my-app || true
-            sudo docker rm my-app || true
-            sudo docker build -t my-app .
+            cd ~/CloudSystems
+            git fetch origin
+            git reset --hard origin/main
+
+            cd my-app
+            sudo docker build --no-cache -t my-app .
+
+            sudo docker rm -f my-app || true
+
             sudo docker run -d -p 3000:3000 --name my-app my-app
