@@ -7,11 +7,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -22,10 +18,5 @@ jobs:
             cd ~/CloudSystems
             git fetch origin
             git reset --hard origin/main
-
-            cd my-app
-            sudo docker build --no-cache -t my-app .
-
-            sudo docker rm -f my-app || true
-
-            sudo docker run -d -p 3000:3000 --name my-app my-app
+            docker-compose build my-app
+            docker-compose up -d
