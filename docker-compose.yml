@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
   caddy:
-    image: ghcr.io/jaegers/caddy-duckdns:latest
+    image: caddy:latest
     restart: unless-stopped
     ports:
       - "80:80"
